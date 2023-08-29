@@ -6,9 +6,10 @@
 </head>
 <body>
     <h1>Buscar resultados</h1>
-    <form action="/search" method="post">
+    <form action="/search" method="get">
         <button type="submit">Buscar</button>
     </form>
     <h2>Resultado da busca ...</h2>
+    <li th:each="noticia : ${noticias}" th:text="${noticia}"></li>
 </body>
 </html>
