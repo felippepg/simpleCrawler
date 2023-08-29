@@ -10,21 +10,27 @@
         <button type="submit">Buscar</button>
     </form>
     <h2>Resultado da busca ...</h2>
-<!--    <li th:each="noticia : ${noticias}" th:text="${noticia}"></li>-->
+    <li th:each="noticia : ${noticias}" th:text="${noticia}"></li>
     <tbody>
     <tr th:each="news : ${newsList}">
+        <p>URL</p>
         <td th:text="${news.url}"></td>
+        <br>
+        <p>TITULO</p>
         <td th:text="${news.title}"></td>
         </br>
+        <p>SUBTITULO</p>
         <td th:text="${news.subtitle}"></td>
         </br>
-
+        <p>AUTOR</p>
         <td th:text="${news.author}"></td>
         </br>
-
+        <p>DATA</p>
         <td th:text="${news.date}"></td>
         </br>
+        <p>CONTEÚDO </p>
         <td th:text="${news.content}"></td>
+        <br>
     </tr>
     </tbody>
 </body>

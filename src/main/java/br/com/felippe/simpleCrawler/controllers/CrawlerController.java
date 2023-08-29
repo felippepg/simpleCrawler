@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -28,15 +30,24 @@ public class CrawlerController {
         Document document = request(url);
         Elements assetLinks = document.select(".article-card__asset a");
         ArrayList<News> newsList = new ArrayList<>();
-
+//        var visited = request("https://www.infomoney.com.br/economia/juros-e-incerteza-economica-mostram-que-bancos-devem-se-manter-vigilantes-alerta-membro-do-fed/");
+//        Elements divElement = visited.select(".element-border--bottom p");
+//        Elements pElements = divElement.select("p");
+//        StringBuilder textBuilder = new StringBuilder();
+//
+//        for (Element pElement : pElements) {
+//            String paragraphText = pElement.text();
+//            textBuilder.append(paragraphText);
+//        }
+//        System.out.println(divElement.text());
         for (Element link : assetLinks) {
             String urlSite = link.attr("href");
             var visited = request(urlSite);
             var news = new News(urlSite, visited.title(),
+                    visited.select(".single__excerpt p").text(),
+                    visited.selectFirst(".single__author-info a").text(),
                     visited.title(),
-                    visited.title(),
-                    visited.title(),
-                    visited.title()
+                    visited.select(".element-border--bottom p").text()
             );
             newsList.add(news);
         }
