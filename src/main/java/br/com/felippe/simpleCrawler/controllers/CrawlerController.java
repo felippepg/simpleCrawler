@@ -1,5 +1,6 @@
 package br.com.felippe.simpleCrawler.controllers;
 
+import br.com.felippe.simpleCrawler.model.News;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
+
 
 @Controller
 public class CrawlerController {
@@ -26,13 +27,21 @@ public class CrawlerController {
         String url = "https://www.infomoney.com.br/mercados/";
         Document document = request(url);
         Elements assetLinks = document.select(".article-card__asset a");
+        ArrayList<News> newsList = new ArrayList<>();
+
         for (Element link : assetLinks) {
             String urlSite = link.attr("href");
-            System.out.println("URL: " + urlSite);
+            var visited = request(urlSite);
+            var news = new News(urlSite, visited.title(),
+                    visited.title(),
+                    visited.title(),
+                    visited.title(),
+                    visited.title()
+            );
+            newsList.add(news);
         }
 
-        //System.out.println(document);
-        //System.out.println(document.select(".article-card"));
+        model.addAttribute("newsList", newsList);
         return "index";
     }
 
@@ -42,7 +51,7 @@ public class CrawlerController {
             Document document = connection.get();
 
             if(connection.response().statusCode() == 200) {
-                System.out.println(document.title());
+//                System.out.println(document.title());
                 return document;
             }
             return null;
