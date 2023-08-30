@@ -8,12 +8,11 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class HelperDateTime {
-    public String converterData(String data) {
+    public String convertDate(String data) {
         LocalDateTime dateTime = LocalDateTime.parse(data, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String formattedDateTime = dateTime.format(formatter);
         return formattedDateTime;
-
     }
 
 }

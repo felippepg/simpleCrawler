@@ -6,7 +6,6 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +17,10 @@ public class CrawlerService {
     @Autowired
     HelperNewsExtractor extractor;
 
-    public ArrayList<News> buscarDadosService(String url) {
+    public ArrayList<News> fetchData(String url) {
         ArrayList<News> newsList = new ArrayList<>();
         var document = request(url);
-        Elements assetLinks = document.select(".article-card__asset a");
+        var assetLinks = document.select(".article-card__asset a");
 
         for (Element link : assetLinks) {
             String urlSite = link.attr("href");
@@ -31,7 +30,7 @@ public class CrawlerService {
             var date = extractor.extractDate(visited);
             var content = extractor.extractContent(visited);
 
-            var news = new News(urlSite, visited.title(),subtitle,author,date,content);
+            var news = new News(urlSite, visited.title(), subtitle, author, date, content);
             newsList.add(news);
         }
         return newsList;

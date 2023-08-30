@@ -25,7 +25,7 @@ public class HelperNewsExtractor {
     public String extractDate(Document document) {
         Element timeElement = document.selectFirst("time.entry-date");
         String datetimeAttribute = timeElement.attr("datetime");
-        return helper.converterData(datetimeAttribute);
+        return helper.convertDate(datetimeAttribute);
     }
 
     public String extractContent(Document document) {
