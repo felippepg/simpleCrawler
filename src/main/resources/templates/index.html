@@ -1,37 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Simple Crawler</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
 </head>
 <body>
-    <h1>Buscar resultados</h1>
-    <form action="/search" method="get">
-        <button type="submit">Buscar</button>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Buscar resultados</h1>
+    <form action="/search" method="get" class="text-center">
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
-    <h2>Resultado da busca ...</h2>
-    <li th:each="noticia : ${noticias}" th:text="${noticia}"></li>
-    <tbody>
-    <tr th:each="news : ${newsList}">
-        <p>URL</p>
-        <td th:text="${news.url}"></td>
-        <br>
-        <p>TITULO</p>
-        <td th:text="${news.title}"></td>
-        </br>
-        <p>SUBTITULO</p>
-        <td th:text="${news.subtitle}"></td>
-        </br>
-        <p>AUTOR</p>
-        <td th:text="${news.author}"></td>
-        </br>
-        <p>DATA</p>
-        <td th:text="${news.date}"></td>
-        </br>
-        <p>CONTEÚDO </p>
-        <td th:text="${news.content}"></td>
-        <br>
-    </tr>
-    </tbody>
+    <div class="my-5">
+        <div class="row">
+            <div th:each="news : ${newsList}" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${news.title}"></h5>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${news.subtitle}"></h6>
+                        <p class="card-text"><small class="text-muted" th:text="${news.author}"></small></p>
+                        <p class="card-text"><small class="text-muted" th:text="${news.date}"></small></p>
+                        <p class="card-text" th:text="${news.content}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
