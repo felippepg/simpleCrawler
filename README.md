@@ -34,12 +34,4 @@ $ cd simpleCrawler
 # Endereço padrão http://localhost:8080
 ```
 
-### ✏️ Observações 
-Não foi possível obter os dados paginados da seção Mercados do site [Infomoney](https://www.infomoney.com.br/mercados/), pois não consegui simular interações usando o Jsoup.
-
-Ao pesquisar sobre a implementação, encontrei maneiras de fazer isso usando o Selenium WebDrivers. No entanto, isso exigiria configurar
-um driver para cada navegador usado ao executar a aplicação (e versões de navegador e drivers). Estou aberto e interessado em aprender como implementar isso.
-
-Obrigado 🙏
-
 
